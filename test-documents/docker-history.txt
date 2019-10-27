@@ -26,4 +26,3 @@ Docker was now supported on FreeBSD, using ZFS and the Linux compatibility layer
 released a “tech preview” of the Docker Engine for Windows server. With the release of Docker 1.8, Docker introduced the
 content trust feature, which verifies the integrity and publisher of Docker images. Content trust is a critical component
 for building trusted workflows based on images retrieved from Docker registries.
-

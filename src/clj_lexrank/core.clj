@@ -28,9 +28,12 @@
   [file-path]
   (with-open [rdr (BufferedReader. (FileReader. file-path))]
     (->> (line-seq rdr)
-         (map str/trim)
          (mapcat #(str/split % #"[.|!|?|:]+"))
+         (map str/trim)
+         (map str/trim-newline)
          (mapv str/lower-case))))
+
+;; TODO: function that generates a vector of vector of sentences for a single document.
 
 (defn sentences-in-multiple-documents
   "Generates a vector of vector of sentences, as per the documents containing them."
