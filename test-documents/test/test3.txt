@@ -1,0 +1,1 @@
+Compose is a tool used to define and run complex applications with Docker. With compose, you can define a multicontainer application in a single file and then spin your application up in a single command, which does everything that needs to be done to get it running.

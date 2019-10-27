@@ -1,0 +1,29 @@
+In 2008, Solomon Hykes founded dotCloud to build a language-agnostic platform-as-a-service (PaaS) offering. The
+language-agnostic aspect was the unique selling point for dotCloud—existing PaaSs were tied to particular sets of languages
+(e.g., Heroku supported Ruby, and Google App Engine supported Java and Python). In 2010, dotCloud took part in Y Combinator’s
+accelerator program, where it was exposed to new partners and began to attract serious investment. Some companies might
+have been reluctant to make such as decision (who wants to give away their magic beans), but the major turning point came
+in March 2013 when dotCloud recognized that Docker would benefit enormously from becoming a community-driven project.
+Early versions of Docker were little more than a wrapper around LXC paired with a union filesystem, but the uptake and
+speed of development was shockingly fast. Within six months, it had more than 6,700 stars on GitHub and 175 nonemployee
+contributors. This led dotCloud to change its name to Docker, Inc., and to refocus its business model. Docker 1.0 was
+announced in June 2014, just 15 months after the 0.1 release. Docker 1.0 represented a major jump in stability and
+reliability—it was now declared “production ready,” although it had already seen production use in several companies,
+including Spotify and Baidu. At the same time, Docker started moving toward being a complete platform rather than just
+a container engine, with the launch of the Docker Hub, a public repository for containers. Other companies were quick to
+see the potential of Docker. Red Hat became a major partner in September 2013 and started using Docker to power its OpenShift
+cloud offering. Google, Amazon, and DigitalOcean were quick to offer Docker support on their clouds, and several startups
+began specializing in Docker hosting, such as Stack Dock. In October 2014, Microsoft announced that future versions of
+Windows Server would support Docker, representing a huge shift in positioning for a company traditionally associated
+with bloated enterprise software. DockerConEU in December 2014 saw the announcement of Docker Swarm, a clustering manager
+for Docker and Docker Machine, a command-line interface (CLI) tool for provisioning Docker hosts. This was a clear signal
+of Docker’s intention to provide a complete and integrated solution for running containers and not allowing themselves to
+be restricted to only providing the Docker engine. That same December, CoreOS announced the development of rkt, its own container
+runtime, and the development of the appc container specification. In June 2015, during DockerCon in San Francisco, Solomon
+Hykes from Docker and Alex Polvi from CoreOS announced the formation of the Open Container Initiative (then called the Open Container Project)
+to develop a common standard for container formats and runtimes. Then, in June 2015, the FreeBSD project announced that
+Docker was now supported on FreeBSD, using ZFS and the Linux compatibility layer. In August 2015, Docker and Microsoft
+released a “tech preview” of the Docker Engine for Windows server. With the release of Docker 1.8, Docker introduced the
+content trust feature, which verifies the integrity and publisher of Docker images. Content trust is a critical component
+for building trusted workflows based on images retrieved from Docker registries.
+

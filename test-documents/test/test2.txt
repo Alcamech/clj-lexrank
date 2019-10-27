@@ -1,0 +1,1 @@
+To demonstrate the benefits of Docker Compose, we will create a simple Node.js "Hello World" application, which will run on 3 Docker Node.js containers. HTTP requests will be distributed to these Node.js nodes by an HAProxy instance running on another Docker container.

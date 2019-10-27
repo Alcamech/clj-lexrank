@@ -1,0 +1,28 @@
+Containers are an old concept. For decades, Unix systems have had the chrootcommand, which provides a simple form of
+filesystem isolation. Since 1998, FreeBSD has hadthe jail utility, which extended chroot sandboxing to processes.Solaris
+Zones offered a comparatively complete containerization technologyaround 2001 but was limited to the Solaris OS. Also in
+2001, SWsoft (now Parallels, Inc.) released the commercial Virtuozzo container technology for Linuxand later open sourced
+the core technology as OpenVZ in 2005.3 Then Google started the development ofCGroups for the Linux kernel and began moving
+its infrastructure tocontainers. The Linux Containers (LXC) project started in 2008 and brought together CGroups,
+kernelnamespaces, and chroot technology (among others) to provide a completecontainerization solution. Finally, in 2013,
+Docker brought the final pieces tothe containerization puzzle, and the technology began to enter the mainstream.Docker
+took the existing Linux container technology and wrapped and extendedit in various ways—primarily through portable images
+and a user-friendly interface—to create a complete solution for the creation and distribution of containers.The Docker
+platform has two distinct components: the Docker Engine (which isresponsible for creating and running containers); and
+the Docker Hub (a cloudservice for distributing containers).The Docker Engine provides a fast and convenient interface
+for runningcontainers. Before this, running a container using a technology such as LXCrequired significant specialist
+knowledge and manual work. The Docker Hubprovides an enormous number of public container images for download, allowingusers
+to quickly get started and avoid duplicating work already done by others.Further tooling developed by Docker includes
+Swarm, a clustering manager;Kitematic, a GUI for working with containers; and Machine, a command-line utility for provisioning
+Docker hosts.By open sourcing the Docker Engine, Docker was able to grow a large communityaround Docker and take advantage
+of public help with bug fixes and enhancements.The rapid rise of Docker meant that it effectively became a de facto standard,
+which led to industry pressure to move to develop independent formal standardsfor the container runtime and format. In 2015,
+this culminated in theestablishment of the Open Container Initiative, a “governance structure”sponsored by Docker, Microsoft,
+CoreOS, and many other important organizations,whose mission is to develop such a standard. Docker’s container format andruntime
+forms the basis of the effort.The uptake of containers has largely been driven by developers, who for thefirst time were given
+the tools to use containers effectively. The fast startuptime of Docker containers is essential to developers who crave quick
+anditerative development cycles where they can promptly see the results of codechanges. The portability and isolation guarantees
+of containers easecollaboration with other developers and operations; developers can be sure theircode will work across
+environments, and operations can focus on hosting andorchestrating containers rather than worrying about the code running
+insidethem.The changes brought about by Docker are significantly changing the way we developsoftware. Without Docker,
+containers would have remained in the shadows of ITfor a long time to come.
