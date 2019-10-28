@@ -12,6 +12,16 @@ Arguments
   - sdoc - Boolean value for if its a single document entity, otherwise will be considered as a directory.
 ```clojure
 (lexrank "test-documents/docker-history.txt" 0.2 0.1 5 true)
+=>
+("In 2008, Solomon Hykes founded dotCloud to build a language-agnostic platform-as-a-service (PaaS) offering."
+ "Docker 1.0 was\nannounced in June 2014, just 15 months after the 0.1 release."
+ "With the release of Docker 1.8, Docker introduced the
+  content trust feature, which verifies the integrity and publisher of Docker images."
+ "The
+  language-agnostic aspect was the unique selling point for dotCloud—existing PaaSs were tied to particular sets of languages
+  (e.g., Heroku supported Ruby, and Google App Engine supported Java and Python)."
+ "Early versions of Docker were little more than a wrapper around LXC paired with a union filesystem, but the uptake and
+  speed of development was shockingly fast.")
 ```
 
 ## License
