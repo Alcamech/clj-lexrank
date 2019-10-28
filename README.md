@@ -1,6 +1,6 @@
 # clj-lexrank
 
-Clojure LexRank Implementation
+Clojure LexRank Implementation for extractive summarization.
 
 ## Usage
 
