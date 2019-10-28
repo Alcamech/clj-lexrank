@@ -1,5 +1,7 @@
 # clj-lexrank
 
+[![Clojars Project](https://img.shields.io/clojars/v/clj-lexrank.svg)](https://clojars.org/clj-lexrank)
+
 Clojure LexRank implementation for extractive summarization.
 
 ## Usage
