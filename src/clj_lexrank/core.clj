@@ -46,14 +46,24 @@
          (mapv str/lower-case))))
 
 (defn gen-sdoc-w-sentences
-  "Generates a vector of vector of sentences, as per the document containing them."
+  "Generates a vector of vector of sentences, as per the document containing them.
+   Document is a text file."
   [file-path]
   {:pre [(validate-spec string? file-path)]
    :post [(validate-spec vector? %)]}
   (vec (map #(vector %) (get-sentences (slurp (io/resource file-path))))))
 
+(defn gen-str-w-sentences
+  "Generates a vector of vector of sentences, as per the document containing them.
+  Document is a string."
+  [document-str]
+  {:pre [(validate-spec string? document-str)]
+   :post [(validate-spec vector? %)]}
+  (vec (map #(vector %) (get-sentences document-str))))
+
 (defn gen-docs-w-sentences
-  "Generates a vector of vector of sentences, as per the documents containing them."
+  "Generates a vector of vector of sentences, as per the documents containing them.
+  Documents are a directory of text files."
   [dir-path]
   {:pre [(validate-spec string? dir-path)]
    :post [(validate-spec vector? %)]}
@@ -136,16 +146,18 @@
 
 (defn lexrank
   "LexRank Algorithm."
-  [path cosine-threshold lexrank-error topN sdoc]
-  {:pre [(validate-spec string? path)
+  [ingest cosine-threshold lexrank-error topN doc-type]
+  {:pre [(validate-spec string? ingest)
          (validate-spec float? cosine-threshold)
          (validate-spec float? lexrank-error)
          (validate-spec number? topN)
-         (validate-spec boolean? sdoc)]
+         (validate-spec keyword? doc-type)]
    :post [(validate-spec coll? %)]}
-  (let [sentences-by-docs (if (true? sdoc)
-                            (gen-sdoc-w-sentences path)
-                            (gen-docs-w-sentences path))
+  (let [sentences-by-docs (case doc-type
+                            :str (gen-str-w-sentences ingest)
+                            :sdoc (gen-sdoc-w-sentences ingest)
+                            :dir (gen-docs-w-sentences ingest)
+                            "invalid key argument")
         idf-map (gen-idf-map-from-docs-sentences sentences-by-docs)
         all-sentences (into [] (mapcat identity sentences-by-docs))
         ;; we begin representing all of our sentences as TFIDF vectors

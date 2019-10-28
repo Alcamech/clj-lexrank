@@ -7,7 +7,7 @@ Clojure LexRank implementation for extractive summarization.
 ## Usage
 
 Arguments
-  - path - Path to file or directory.
+  - ingest - Ingest can either be a file path, directory path, or string.
   - cosine-threshold - Threshold to test against when determining similarity.
   - lexrank-error - Value to compare against sigma in power method computation.
   - topN  - Top N sentences to use in the summary.
@@ -25,6 +25,16 @@ Arguments
   (e.g., Heroku supported Ruby, and Google App Engine supported Java and Python)."
  "Early versions of Docker were little more than a wrapper around LXC paired with a union filesystem, but the uptake and
   speed of development was shockingly fast.")
+
+(lexrank "In this blog post, we will walk you through the different steps that are necessary to get you started with Docker 
+Compose and show you how to use it. To demonstrate the benefits of Docker Compose, we will create a simple Node.js \"Hello World\" application, 
+which will run on 3 Docker Node.js containers. HTTP requests will be distributed to these Node.js nodes by an HAProxy instance running on another Docker container. 
+Compose is a tool used to define and run complex applications with Docker. With compose, you can define a multicontainer application in a single file and then spin 
+your application up in a single command, which does everything that needs to be done to get it running." 0.2 0.1 3 :str)
+=>
+("In this blog post, we will walk you through the different steps that are necessary to get you started with Docker Compose and show you how to use it."
+ "To demonstrate the benefits of Docker Compose, we will create a simple Node.js \"Hello World\" application, which will run on 3 Docker Node.js containers."
+ "HTTP requests will be distributed to these Node.js")
 ```
 
 ## License
