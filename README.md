@@ -1,15 +1,16 @@
 # clj-lexrank
 
-Clojure LexRank Implementation for extractive summarization.
+Clojure LexRank implementation for extractive summarization.
 
 ## Usage
 
 Arguments
   - path - Path to file or directory.
-  - cosine-threshold - threshold to test against when determining similarity.
-  - lexrank-error - value to compare against sigma in power method computation.
+  - cosine-threshold - Threshold to test against when determining similarity.
+  - lexrank-error - Value to compare against sigma in power method computation.
   - topN  - Top N sentences to use in the summary.
   - sdoc - Boolean value for if its a single document entity, otherwise will be considered as a directory.
+  
 ```clojure
 (lexrank "test-documents/docker-history.txt" 0.2 0.1 5 true)
 =>
