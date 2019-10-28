@@ -1,4 +1,4 @@
-(defproject clj-lexrank "0.1.0"
+(defproject clj-lexrank "0.1.1"
   :description "Clojure Lexrank implementation"
   :url "https://github.com/Alcamech/clj-lexrank"
   :license {:name "Apache License 2.0"
