@@ -2,10 +2,13 @@
   (:require [clojure.java.io :as io]
             [clojure.string :as str]
             [clojure.core.matrix :as matrix]
+            [opennlp.nlp :as nlp]
             [clojure.core.matrix.operators :refer [* - + == /]])
   (:refer-clojure :exclude [* - + == /])
   (:import (java.io BufferedReader FileReader))
   (:import java.io.File))
+
+(def get-sentences (nlp/make-sentence-detector "models/en-sent.bin"))
 
 (defn count-words-in-document
   "Counts the words in the documents."
@@ -23,7 +26,7 @@
          (map (fn [w] {w (Math/log (/ N (count-words-in-document w documents)))}))
          (into {}))))
 
-(defn sentences-in-single-document
+(defn sentences-in-document
   "extracts the sentences in a particular document"
   [file-path]
   (with-open [rdr (BufferedReader. (FileReader. file-path))]
@@ -33,13 +36,16 @@
          (map str/trim-newline)
          (mapv str/lower-case))))
 
-;; TODO: function that generates a vector of vector of sentences for a single document.
+(defn gen-sdoc-w-sentences
+  "Generates a vector of vector of sentences, as per the document containing them."
+  [file-path]
+  (vec (map #(vector %) (get-sentences (slurp (io/resource file-path))))))
 
-(defn sentences-in-multiple-documents
+(defn gen-docs-w-sentences
   "Generates a vector of vector of sentences, as per the documents containing them."
   [dir-path]
   (let [files (.listFiles (File. dir-path))]
-    (mapv sentences-in-single-document files)))
+    (mapv sentences-in-document files)))
 
 (defn words-in-document-sentences
   "Extracts the words from all document sentences."
@@ -103,8 +109,10 @@
           (recur new-p))))))
 
 (defn lexrank
-  [path cosine-threshold lexrank-error topN]
-  (let [sentences-by-docs (sentences-in-multiple-documents path)
+  [path cosine-threshold lexrank-error topN sdoc]
+  (let [sentences-by-docs (if (true? sdoc)
+                            (gen-sdoc-w-sentences path)
+                            (gen-docs-w-sentences path))
         idf-map (gen-idf-map-from-docs-sentences sentences-by-docs)
         all-sentences (into [] (mapcat identity sentences-by-docs))
         sentences-w-tfidf (into [] (reduce concat
@@ -145,28 +153,6 @@
          ;; and we show the sentences corresponding to
          ;; the topN first highest LexRank scores.
          (map #(get all-sentences %)))))
-
-
-
-(comment (defn lexrank-2
-           [path cosine-threshold lexrank-error topN]
-           (let [sentences-by-docs (sentences-in-multiple-documents path)
-                 idf-map (gen-idf-map-from-doc-sentences sentences-by-docs)
-                 all-sentences (into [] (mapcat identity sentences-by-docs))
-                 sentences-w-tfidf (into [] (reduce concat (for [s sentences-by-docs] (map (partial tfidf-vector-from-sentence idf-map) s))))
-                 cent-raw-matrix (matrix/matrix (into [] (for [i sentences-w-tfidf] (into [] (for [j sentences-w-tfidf]
-                                                                                               (let [cos-sim-i-j (cosine-similarity i j)]
-                                                                                                 (if (>= cos-sim-i-j cosine-threshold) cos-sim-i-j 0)))))))
-                 degrees (->> (matrix/rows cent-raw-matrix)
-                              (mapv (partial reduce +)))
-                 centrality-matrix (matrix/matrix (into [] (for [i (range (count degrees))]
-                                                             (/ (matrix/get-row cent-raw-matrix i) (get degrees i)))))
-                 lexrank-vector (power-method centrality-matrix lexrank-error)
-                 lexrank-v-w-indices (zipmap (iterate inc 0) lexrank-vector)]
-             (->> (sort-by val > lexrank-v-w-indices)
-                  (take topN)
-                  (map #(get % 0))
-                  (map #(get all-sentences %))))))
 
 
 
