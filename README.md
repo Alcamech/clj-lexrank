@@ -14,7 +14,7 @@ Arguments
   - sdoc - Boolean value for if its a single document entity, otherwise will be considered as a directory.
   
 ```clojure
-(lexrank "test-documents/docker-history.txt" 0.2 0.1 5 true)
+(lexrank "test-documents/docker-history.txt" 0.2 0.1 5 :sdoc)
 =>
 ("In 2008, Solomon Hykes founded dotCloud to build a language-agnostic platform-as-a-service (PaaS) offering."
  "Docker 1.0 was\nannounced in June 2014, just 15 months after the 0.1 release."
