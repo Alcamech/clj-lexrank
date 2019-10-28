@@ -11,7 +11,7 @@ Arguments
   - cosine-threshold - Threshold to test against when determining similarity.
   - lexrank-error - Value to compare against sigma in power method computation.
   - topN  - Top N sentences to use in the summary.
-  - doctype - Keyword value can either be :str, :sdoc or :dir.
+  - doctype - Keyword value can either be `:str`, `:sdoc` or `:dir`.
   
 ```clojure
 (lexrank "test-documents/docker-history.txt" 0.2 0.1 5 :sdoc)
